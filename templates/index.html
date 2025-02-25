@@ -44,10 +44,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let form = document.getElementById("weather-form");
+
             form.addEventListener("submit", function () {
                 let weatherInfo = document.getElementById("weather-info");
                 if (weatherInfo) {
                     weatherInfo.classList.remove("show");
+                    setTimeout(() => {
+                        weatherInfo.remove();
+                    }, 500);
                 }
             });
 
