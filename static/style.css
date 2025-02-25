@@ -16,7 +16,7 @@ form {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,7 +32,7 @@ input[type="text"] {
     padding: 10px;
     margin: 10px 0 20px 0;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 16px;
     box-sizing: border-box;
 }
@@ -41,11 +41,12 @@ button {
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 16px;
-    border-radius: 4px;
+    border-radius: 12px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -57,7 +58,7 @@ button:hover {
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     opacity: 0;
@@ -83,4 +84,5 @@ button:hover {
     color: red;
     text-align: center;
     font-size: 18px;
+    border-radius: 12px;
 }
