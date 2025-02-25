@@ -9,56 +9,62 @@
 <body>
     <h1>Погода</h1>
     {% if not api_key_set %}
-        <form method="post">
+        <form method="post" class="form-container">
             <label for="api_key">Введите API ключ:</label>
             <input type="text" id="api_key" name="api_key" required>
             <button type="submit" name="set_api_key">Сохранить ключ</button>
         </form>
     {% else %}
-        <form method="post" id="weather-form">
-            <label for="city">Введите город:</label>
-            <input type="text" id="city" name="city" required>
-            <button type="submit">Получить погоду</button>
-        </form>
+        <div class="form-container" id="form-container">
+            <form method="post" id="weather-form">
+                <label for="city">Введите город:</label>
+                <input type="text" id="city" name="city" required>
+                <button type="submit">Получить погоду</button>
+            </form>
 
-        {% if weather %}
-            <div class="weather-info" id="weather-info">
-                <h2>Погода в {{ weather.name }}</h2>
-                <p>Температура: {{ weather.main.temp }}°C</p>
-                <p>Ощущается как: {{ weather.main.feels_like }}°C</p>
-                <p>Влажность: {{ weather.main.humidity }}%</p>
-                <p>Давление: {{ weather.main.pressure }} hPa</p>
-                <p>Скорость ветра: {{ weather.wind.speed }} м/с</p>
-                <p>Видимость: {{ weather.visibility // 1000 }} км</p>
-                <p>Описание: {{ weather.weather[0].description }}</p>
-                <p>Восход: {{ sunrise }}</p>
-                <p>Закат: {{ sunset }}</p>
+            <div class="weather-info {% if weather %}show{% endif %}" id="weather-info">
+                {% if weather %}
+                    <h2>Погода в {{ weather.name }}</h2>
+                    <p>Температура: {{ weather.main.temp }}°C</p>
+                    <p>Ощущается как: {{ weather.main.feels_like }}°C</p>
+                    <p>Влажность: {{ weather.main.humidity }}%</p>
+                    <p>Давление: {{ weather.main.pressure }} hPa</p>
+                    <p>Скорость ветра: {{ weather.wind.speed }} м/с</p>
+                    <p>Видимость: {{ weather.visibility // 1000 }} км</p>
+                    <p>Описание: {{ weather.weather[0].description }}</p>
+                    <p>Восход: {{ sunrise }}</p>
+                    <p>Закат: {{ sunset }}</p>
+                {% endif %}
             </div>
-        {% endif %}
 
-        {% if error %}
-            <p class="error">{{ error }}</p>
-        {% endif %}
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </div>
     {% endif %}
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let form = document.getElementById("weather-form");
+            let formContainer = document.getElementById("form-container");
+            let weatherInfo = document.getElementById("weather-info");
 
-            form.addEventListener("submit", function () {
-                let weatherInfo = document.getElementById("weather-info");
-                if (weatherInfo) {
+            form.addEventListener("submit", function (event) {
+                if (weatherInfo && weatherInfo.classList.contains("show")) {
+                    event.preventDefault();
+
                     weatherInfo.classList.remove("show");
+
                     setTimeout(() => {
-                        weatherInfo.remove();
-                    }, 500);
+                        form.submit();
+                    }, 600);
                 }
             });
 
-            let weatherInfo = document.getElementById("weather-info");
-            if (weatherInfo) {
+            if (weatherInfo && weatherInfo.innerHTML.trim() !== "") {
                 setTimeout(() => {
                     weatherInfo.classList.add("show");
+                    formContainer.classList.add("expanded");
                 }, 100);
             }
         });

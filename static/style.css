@@ -11,13 +11,21 @@ h1 {
     margin-top: 50px;
 }
 
-form {
+.form-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.6s ease-in-out, padding 0.4s ease-in-out;
+    overflow: hidden;
+    max-height: 150px;
+}
+
+.form-container.expanded {
+    max-height: 550px;
+    padding-bottom: 25px;
 }
 
 label {
@@ -54,21 +62,27 @@ button:hover {
 }
 
 .weather-info {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
     opacity: 0;
-    transform: translateY(-20px) scale(0.9);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    text-align: center;
 }
 
 .weather-info.show {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    max-height: 400px;
+}
+
+.weather-info h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.weather-info p {
+    font-size: 18px;
+    color: #555;
+    margin: 5px 0;
 }
 
 .error {
