@@ -15,14 +15,14 @@
             <button type="submit" name="set_api_key">Сохранить ключ</button>
         </form>
     {% else %}
-        <form method="post">
+        <form method="post" id="weather-form">
             <label for="city">Введите город:</label>
             <input type="text" id="city" name="city" required>
             <button type="submit">Получить погоду</button>
         </form>
 
         {% if weather %}
-            <div class="weather-info">
+            <div class="weather-info" id="weather-info">
                 <h2>Погода в {{ weather.name }}</h2>
                 <p>Температура: {{ weather.main.temp }}°C</p>
                 <p>Ощущается как: {{ weather.main.feels_like }}°C</p>
@@ -40,5 +40,24 @@
             <p class="error">{{ error }}</p>
         {% endif %}
     {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let form = document.getElementById("weather-form");
+            form.addEventListener("submit", function () {
+                let weatherInfo = document.getElementById("weather-info");
+                if (weatherInfo) {
+                    weatherInfo.classList.remove("show");
+                }
+            });
+
+            let weatherInfo = document.getElementById("weather-info");
+            if (weatherInfo) {
+                setTimeout(() => {
+                    weatherInfo.classList.add("show");
+                }, 100);
+            }
+        });
+    </script>
 </body>
 </html>
