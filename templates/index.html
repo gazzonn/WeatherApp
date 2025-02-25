@@ -22,10 +22,18 @@
         </form>
 
         {% if weather %}
-            <h2>Погода в {{ weather.name }}:</h2>
-            <p>Температура: {{ weather.main.temp }}°C</p>
-            <p>Влажность: {{ weather.main.humidity }}%</p>
-            <p>Описание: {{ weather.weather[0].description }}</p>
+            <div class="weather-info">
+                <h2>Погода в {{ weather.name }}</h2>
+                <p>Температура: {{ weather.main.temp }}°C</p>
+                <p>Ощущается как: {{ weather.main.feels_like }}°C</p>
+                <p>Влажность: {{ weather.main.humidity }}%</p>
+                <p>Давление: {{ weather.main.pressure }} hPa</p>
+                <p>Скорость ветра: {{ weather.wind.speed }} м/с</p>
+                <p>Видимость: {{ weather.visibility // 1000 }} км</p>
+                <p>Описание: {{ weather.weather[0].description }}</p>
+                <p>Восход: {{ sunrise }}</p>
+                <p>Закат: {{ sunset }}</p>
+            </div>
         {% endif %}
 
         {% if error %}

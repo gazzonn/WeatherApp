@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import requests
+import datetime
 
 app = Flask(__name__)
 
@@ -33,7 +34,9 @@ def index():
             city = request.form['city']
             weather_data = get_weather(city, api_key)
             if weather_data.get('cod') == 200:
-                return render_template('index.html', weather=weather_data, api_key_set=True)
+                sunrise = datetime.datetime.fromtimestamp(weather_data['sys']['sunrise']).strftime('%H:%M:%S')
+                sunset = datetime.datetime.fromtimestamp(weather_data['sys']['sunset']).strftime('%H:%M:%S')
+                return render_template('index.html', weather=weather_data, api_key_set=True, sunrise=sunrise, sunset=sunset)
             else:
                 return render_template('index.html', error="Город не найден", api_key_set=True)
 
