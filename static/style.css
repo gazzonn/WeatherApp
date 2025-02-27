@@ -24,7 +24,7 @@ h1 {
 }
 
 .form-container.expanded {
-    max-height: 550px;
+    max-height: 700px;
     padding-bottom: 25px;
 }
 
@@ -71,42 +71,36 @@ button:hover {
 
 .weather-info.show {
     opacity: 1;
-    max-height: 400px;
+    max-height: 600px;
 }
 
 .weather-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 0px;
 }
 
 .weather-icon {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
+}
+
+.weather-description {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
 }
 
 .temperature {
-    font-size: 48px;
+    font-size: 36px !important;
     font-weight: bold;
-    color: #333;
-}
-
-.weather-info h2 {
-    color: #333;
-    margin-bottom: 10px;
+    color: #ff4500;
+    margin: 0;
 }
 
 .weather-info p {
     font-size: 18px;
-    color: #555;
-    margin: 5px 0;
-}
-
-.error {
-    color: red;
-    text-align: center;
-    font-size: 18px;
-    border-radius: 12px;
+    word-wrap: break-word;
 }
