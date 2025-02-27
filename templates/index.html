@@ -29,7 +29,7 @@
                         <img class="weather-icon" src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Иконка погоды">
                         <p class="weather-description">{{ weather.weather[0].description }}</p>
                     </div>
-                    <p class="temperature">{{ weather.main.temp }}°C</p>
+                    <p class="temperature" id="temperature">{{ weather.main.temp }}°C</p>
                     <div class="weather-details">
                         <div class="weather-tile">
                             <span class="tile-title">Ощущается как</span>
@@ -69,53 +69,6 @@
         </div>
     {% endif %}
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let form = document.getElementById("weather-form");
-            let formContainer = document.getElementById("form-container");
-            let weatherInfo = document.getElementById("weather-info");
-
-            form.addEventListener("submit", function (event) {
-                if (weatherInfo && weatherInfo.classList.contains("show")) {
-                    event.preventDefault();
-                    weatherInfo.classList.remove("show");
-                    setTimeout(() => { form.submit(); }, 600);
-                }
-            });
-
-            if (weatherInfo && weatherInfo.innerHTML.trim() !== "") {
-                setTimeout(() => {
-                    weatherInfo.classList.add("show");
-                    formContainer.classList.add("expanded");
-                }, 100);
-            }
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function updateTemperatureColor() {
-                let tempElement = document.querySelector(".temperature");
-                if (!tempElement) return;
-
-                let temp = parseFloat(tempElement.innerText);
-                let color = getTemperatureColor(temp);
-                tempElement.style.color = color;
-            }
-
-            function getTemperatureColor(temp) {
-                if (temp <= -30) return "#1B1F7A";
-                if (temp <= -20) return "#1E3A8A";
-                if (temp <= -10) return "#2563EB";
-                if (temp <= 0) return "#3B82F6";
-                if (temp <= 10) return "#22A7F0";
-                if (temp <= 20) return "#F59E0B";
-                if (temp <= 30) return "#DC2626";
-                return "#9B1C1C";
-            }
-
-            updateTemperatureColor();
-        });
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
