@@ -24,7 +24,7 @@ h1 {
 }
 
 .form-container.expanded {
-    max-height: 700px;
+    max-height: 800px;
     padding-bottom: 25px;
 }
 
@@ -71,7 +71,7 @@ button:hover {
 
 .weather-info.show {
     opacity: 1;
-    max-height: 600px;
+    max-height: 700px;
 }
 
 .weather-header {
@@ -103,22 +103,24 @@ button:hover {
 
 .weather-details {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
     justify-items: center;
     margin-top: 20px;
+    padding: 10px;
 }
 
 .weather-tile {
     background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 120px;
+    width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid #007BFF;
 }
 
 .tile-title {
