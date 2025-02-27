@@ -67,6 +67,7 @@ button:hover {
     overflow: hidden;
     transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
     text-align: center;
+    padding-top: 20px;
 }
 
 .weather-info.show {
