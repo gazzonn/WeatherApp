@@ -24,14 +24,17 @@
 
             <div class="weather-info {% if weather %}show{% endif %}" id="weather-info">
                 {% if weather %}
-                    <h2>Погода в {{ weather.name }}</h2>
-                    <p>Температура: {{ weather.main.temp }}°C</p>
+                    <h2>{{ weather.name }}</h2>
+                    <div class="weather-header">
+                        <img class="weather-icon" src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Иконка погоды">
+                        <p>{{ weather.weather[0].description }}</p>
+                    </div>
+                    <p class="temperature">{{ weather.main.temp }}°C</p>
                     <p>Ощущается как: {{ weather.main.feels_like }}°C</p>
                     <p>Влажность: {{ weather.main.humidity }}%</p>
                     <p>Давление: {{ weather.main.pressure }} hPa</p>
                     <p>Скорость ветра: {{ weather.wind.speed }} м/с</p>
                     <p>Видимость: {{ weather.visibility // 1000 }} км</p>
-                    <p>Описание: {{ weather.weather[0].description }}</p>
                     <p>Восход: {{ sunrise }}</p>
                     <p>Закат: {{ sunset }}</p>
                 {% endif %}
@@ -52,12 +55,8 @@
             form.addEventListener("submit", function (event) {
                 if (weatherInfo && weatherInfo.classList.contains("show")) {
                     event.preventDefault();
-
                     weatherInfo.classList.remove("show");
-
-                    setTimeout(() => {
-                        form.submit();
-                    }, 600);
+                    setTimeout(() => { form.submit(); }, 600);
                 }
             });
 
